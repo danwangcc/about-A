@@ -11,7 +11,7 @@ const socialLinks = [
 const btnRefs = ref<HTMLElement[]>([])
 
 const animateButtons = () => {
-  const radius = 180; // Final resting radius
+  const radius = 150; // Final resting radius
   const overshootFactor = 1.15;
   const overshootRadius = radius * overshootFactor; 
 
@@ -76,7 +76,7 @@ onMounted(() => {
   <div class="relative h-screen w-full flex items-center justify-center bg-cover bg-center bg-fixed overflow-hidden" style="background-image: url('/images/pic/pic_1.jpg');">
     
     <!-- 核心容器 -->
-    <div class="relative flex items-center justify-center -translate-y-12">
+    <div class="relative flex items-center justify-center -translate-y-12 md:scale-130">
       
       <!-- 社交按钮容器 -->
       <div class="absolute inset-0 flex items-center justify-center">
@@ -99,17 +99,17 @@ onMounted(() => {
       <div class="absolute w-[210px] h-[210px] rounded-full border-[3px] border-transparent border-t-cyan-400 animate-spin-ultra-fast"></div>
 
       <!-- 中心大头像 -->
-      <div class="relative w-40 h-40 rounded-full border-4 border-white/20 shadow-2xl overflow-hidden z-30 bg-black/20 backdrop-blur-sm cursor-pointer">
+      <div class="relative w-36 h-36 rounded-full border-4 border-white/20 shadow-2xl overflow-hidden z-30 bg-black/20 backdrop-blur-sm cursor-pointer">
         <img src="/images/pic/avatar.png" alt="Avatar" class="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-500">
       </div>
     </div>
 
     <!-- 文字内容 -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-8 text-white">
-      <div class="bg-black/20 p-8 rounded-3xl text-center shadow-2xl border border-white/10 z-10">
-        <h3 class="text-2xl">_Smileシ淡莣c</h3>
-        <p class=" text-2xl font-light tracking-widest uppercase">浮生一薤露，蜗角争是非</p><br>
-        <p>为世界献上美好祝福 <br> 愿世界祝福我</p>
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 md:px-8 text-white">
+      <div class="bg-black/20 p-4 md:p-6 rounded-3xl text-center shadow-2xl border border-white/10 z-10">
+        <h3 class="text-xl md:text-2xl font-bold">_Smileシ淡莣c</h3>
+        <p class="text-xs md:text-sm font-light tracking-widest uppercase mt-1">浮生一薤露，蜗角争是非</p><br>
+        <p class="text-sm md:text-base leading-relaxed">为世界献上美好祝福 <br> 愿世界祝福我</p>
       </div>
     </div>
 

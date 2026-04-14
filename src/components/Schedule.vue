@@ -36,7 +36,7 @@
 
       <!-- 右侧部分：诗意文字 (移动端占据剩余空间) -->
       <div class="flex-auto md:flex-1 w-full flex flex-col items-center justify-center overflow-hidden">
-        <div class="text-center text-amber-50/90 max-w-lg w-full px-6 py-2 md:px-8 md:py-12 overflow-hidden bg-black/20 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl">
+        <div class="text-center text-amber-50/90 max-w-sm md:max-w-lg w-full px-6 py-4 md:px-8 md:py-12 overflow-hidden bg-black/20 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl">
           <h2 class="text-lg md:text-3xl font-light mb-0.5">神眷之櫻花</h2>
 
           <!-- 分割线 (80% 宽度，极小上下间距) -->
