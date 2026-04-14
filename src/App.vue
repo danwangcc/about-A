@@ -61,7 +61,7 @@ const options = ref({
       <div class="section">
         <Hobby />
       </div>
-      <div class="section">
+      <div class="section fp-auto-height">
         <Contact />
       </div>
     </full-page>
@@ -71,17 +71,9 @@ const options = ref({
 <style>
 @reference "tailwindcss";
 
-#fullpage, .fp-section, .fp-content {
-  height: 100vh !important;
-}
-
 .section {
   padding: 0 !important;
 }
-
-/* #menu li.active a {
-  @apply text-black border-b-2 border-black pb-1;
-} */
 
 /* 针对 fullpage.js 的固定背景效果优化 */
 .fp-section {
