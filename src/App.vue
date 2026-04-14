@@ -24,7 +24,7 @@ const options = ref({
   anchors: navItems.map(item => item.anchor),
   menu: '#menu',
   css3: false, // 必须设为 false，否则背景固定效果会失效
-  scrollingSpeed: 1000,
+  scrollingSpeed: 600,
 })
 </script>
 
