@@ -4,7 +4,7 @@ import { gsap } from 'gsap'
 
 const socialLinks = [
   { name: 'Bilibili', src: 'https://space.bilibili.com/417911503?s', icon: '/images/icon/bilibili.png', bgColor: 'bg-pink-400', baseAngle: 0 },
-  { name: 'GitHub', src: 'https://github.com/danwang1239568', icon: '/images/icon/github.png', bgColor: 'bg-gray-800', baseAngle: 120 },
+  { name: 'GitHub', src: 'https://github.com/danwangcc', icon: '/images/icon/github.png', bgColor: 'bg-gray-800', baseAngle: 120 },
   { name: 'X (Twitter)', src: 'https://x.com/danwangcc', icon: '/images/icon/x.png', bgColor: 'bg-blue-400', baseAngle: 240 }
 ]
 
@@ -103,7 +103,7 @@ onUnmounted(() => {
       <!-- 中心大头像 -->
       <div 
         @click="handleHeadClick"
-        class="relative w-36 h-36 rounded-full border-4 border-white/20 shadow-2xl overflow-hidden z-30 bg-black/20 backdrop-blur-sm cursor-pointer group active:scale-90 transition-transform duration-200"
+        class="relative w-40 h-40 rounded-full border-4 border-white/20 shadow-2xl overflow-hidden z-30 bg-black/20 backdrop-blur-sm cursor-pointer group active:scale-90 transition-transform duration-200"
       >
         <img src="/images/pic/avatar.png" alt="Avatar" class="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500">
       </div>
@@ -113,7 +113,7 @@ onUnmounted(() => {
     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 md:px-8 text-white select-none pointer-events-none opacity-90">
       <div class="bg-black/20 p-4 md:p-6 rounded-3xl text-center shadow-2xl border border-white/10 backdrop-blur-sm">
         <h3 class="text-xl md:text-2xl font-bold tracking-tight text-amber-50">_Smileシ淡莣c</h3>
-        <p class="text-xs md:text-sm font-light tracking-[0.2em] uppercase mt-1 opacity-70">浮生一薤露，蜗角争是非</p>
+        <p class="text-xs md:text-sm font-light tracking-[0.2em] uppercase mt-1">浮生一薤露，蜗角争是非</p>
         <div class="h-px w-12 bg-white/10 mx-auto my-3"></div>
         <p class="text-sm md:text-base leading-relaxed font-light">
           为世界献上美好祝福 <br> 愿世界祝福我

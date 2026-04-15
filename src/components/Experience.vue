@@ -39,14 +39,14 @@
         <!-- 经历卡片 (上下交替，不透明度增加) -->
         <div 
           :class="[
-            'absolute left-1/2 -translate-x-1/2 h-[30vh] w-[70vw] md:w-[450px] p-6 bg-gray-600/85 rounded-2xl border border-white/5 shadow-[8px_8px_20px_rgba(0,0,0,0.5)] transition-all',
+            'absolute left-1/2 -translate-x-1/2 h-[35vh] w-[70vw] md:w-[450px] p-6 bg-gray-600/85 rounded-2xl border border-white/5 shadow-[8px_8px_20px_rgba(0,0,0,0.5)] transition-all',
             index % 2 === 0 ? 'bottom-[55%]' : 'top-[55%]'
           ]"
         >
           <!-- 标题 -->
           <h3 v-if="item.title" class="text-white text-lg md:text-xl font-bold mb-3 tracking-wide transition-colors whitespace-normal leading-tight">{{ item.title }}</h3>
           <!-- 描述 -->
-          <p class="text-white/60 text-xs md:text-sm whitespace-pre-line leading-relaxed">{{ item.description }}</p>
+          <p class="text-white/60 text-1xs md:text-sm whitespace-pre-line leading-relaxed">{{ item.description }}</p>
 
           <!-- 指向中心的小箭头/线装饰 -->
           <div 
@@ -62,7 +62,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { gsap } from 'gsap'
 
 const scrollContainer = ref<HTMLElement | null>(null)
 
@@ -73,7 +74,7 @@ const experiences = [
   },
   { 
     title: '2023.10', 
-    description: '进了计算机专业，开始正儿八经学习编程。' 
+    description: '进了计算机专业，开始正经学习编程。' 
   },
   { 
     title: '2024.01', 
@@ -95,6 +96,28 @@ const scroll = (direction: number) => {
     scrollContainer.value.scrollLeft += direction * scrollAmount;
   }
 }
+
+onMounted(() => {
+  if (!scrollContainer.value) return
+
+  const container = scrollContainer.value
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 第一次进入视口时的整体滑入动画
+        gsap.fromTo(container, 
+          { x: "-100vw", opacity: 0 },
+          { x: 0, opacity: 1, duration: 1, ease: "power2.out" }
+        )
+
+        observer.disconnect() // 只执行一次
+      }
+    })
+  }, { threshold: 0.1 })
+
+  observer.observe(container)
+})
 </script>
 
 <style scoped>

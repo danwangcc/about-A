@@ -31,12 +31,12 @@ const options = ref({
 <template>
   <div class="app-wrapper">
     <!-- 固定顶部 Header -->
-    <header class="fixed top-0 left-0 w-full h-10 md:h-14 flex items-center justify-between px-8 bg-white opacity-90 z-[100] transition-all shadow-sm">
+    <header class="fixed top-0 left-0 w-full h-10 md:h-14 flex items-center justify-between px-8 bg-white opacity-90 z-100 transition-all shadow-sm">
       <div class="avatar flex items-center gap-3">
         <div class="w-10 h-10 rounded-full bg-black/10 border border-black/20 flex items-center justify-center overflow-hidden">
-          <img src="/images/pic/avatar.png" alt="">
+          <img src="/images/pic/avatar.png" alt="avatar">
         </div>
-        <span class="text-black font-medium text-lg tracking-wider uppercase">My Portfolio</span>
+        <span class="text-black font-medium text-lg tracking-wider">danwangcc</span>
       </div>
 
       <nav id="menu" class="hidden md:flex items-center gap-8">
@@ -85,5 +85,26 @@ const options = ref({
 /* 隐藏 fullpage.js 水印 */
 .fp-watermark {
   display: none !important;
+}
+
+/* 自定义导航小圆点样式 */
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+  background: transparent !important;
+  border: 1.5px solid #fff !important; /* 白色圆框 */
+  opacity: 1 !important; /* 确保不透明 */
+  transition: all 0.3s ease;
+}
+
+/* 激活状态样式 */
+#fp-nav ul li a.active span,
+.fp-slidesNav ul li a.active span {
+  background: #fff !important; /* 白色实心 */
+}
+
+/* 悬停时轻微填充感（可选） */
+#fp-nav ul li a:hover span,
+.fp-slidesNav ul li a:hover span {
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 </style>

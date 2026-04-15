@@ -3,7 +3,7 @@
     
     <!-- 顶部标题 -->
     <div class="text-center">
-      <h2 class="text-sm md:text-xl text-white tracking-widest opacity-90">
+      <h2 class="text-lg md:text-xl text-white tracking-widest opacity-90">
         Something Of Hobby
       </h2>
     </div>

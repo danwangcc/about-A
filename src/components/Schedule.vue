@@ -7,7 +7,7 @@
       <div class="flex-initial md:flex-1 flex flex-col justify-center space-y-3 md:space-y-6 tech-stack-container">
         <div v-for="(tech, index) in techStack" :key="tech.name" class="flex flex-col">
           <!-- 进度条容器 -->
-          <div class="relative flex items-center h-7 md:h-10 w-full">
+          <div class="relative flex items-center h-[5vh] md:h-10 w-full">
             <!-- 进度条主体 (GSAP 动画目标) -->
             <div 
               :ref="el => { if(el) barRefs[index] = el as HTMLElement }"
@@ -55,7 +55,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
