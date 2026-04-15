@@ -75,7 +75,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative h-screen w-full flex items-center justify-center bg-cover bg-center bg-fixed overflow-hidden" style="background-image: url('/images/pic/pic_1.jpg');">
+  <div class="relative h-screen w-full flex items-center justify-center bg-cover bg-left bg-fixed overflow-hidden" style="background-image: url('/images/pic/bg1.png');">
     
     <!-- 核心容器 -->
     <div class="relative flex items-center justify-center -translate-y-12 md:scale-110">

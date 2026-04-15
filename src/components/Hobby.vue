@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-full px-[3vw] sm:px-[20vw] md:px-12 flex flex-col items-center pt-12 md:pt-18 bg-cover bg-center bg-fixed" style="background-image: url('/images/pic/pic_4.jpg');">
+  <div class="h-screen w-full px-[3vw] sm:px-[20vw] md:px-12 flex flex-col items-center pt-12 md:pt-18 bg-cover bg-center bg-fixed" style="background-image: url('/images/pic/bg4.jpg');">
     
     <!-- 顶部标题 -->
     <div class="text-center">

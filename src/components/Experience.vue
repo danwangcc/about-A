@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen w-full bg-cover bg-center bg-fixed overflow-hidden" style="background-image: url('/images/pic/pic_3.jpg');">
+  <div class="relative h-screen w-full bg-cover bg-center bg-fixed overflow-hidden" style="background-image: url('/images/pic/bg3.png');">
     
     <!-- 标题 (可选，增强层次感) -->
     <h2 class="absolute top-20 left-12 text-white/20 text-8xl font-black uppercase pointer-events-none select-none">

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen w-full bg-cover bg-center bg-fixed flex items-center justify-center" style="background-image: url('/images/pic/pic_2.jpg');">
+  <div class="relative h-screen w-full bg-cover bg-center bg-fixed flex items-center justify-center" style="background-image: url('/images/pic/bg2.jpg');">
     <!-- 主容器 -->
     <div class="flex flex-col md:flex-row w-full h-full pt-16 md:pt-20 pb-2 px-6 md:px-12 gap-3 md:gap-8">
       
@@ -74,7 +74,7 @@ const techStack: Tech[] = [
   { name: 'React', level: 50, color: '#88ce02' },
   { name: 'TypeScript', level: 60, color: '#3178c6' },
   { name: 'Tailwind CSS', level: 70, color: '#38bdf8' },
-  { name: 'Node.js / Express', level: 50, color: '#83cd29' },
+  { name: 'Node.js', level: 50, color: '#83cd29' },
 ]
 
 const barRefs = ref<HTMLElement[]>([])
