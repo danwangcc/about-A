@@ -1,115 +1,124 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 
 const socialLinks = [
-  { name: 'Bilibili', src: 'https://space.bilibili.com/417911503?s', icon: '/images/icon/bilibili.png', url: '#', bgColor: 'bg-pink-400', angle: -110 },
-  { name: 'GitHub', src: 'https://github.com/danwang1239568', icon: '/images/icon/github.png', url: '#', bgColor: 'bg-gray-800', angle: 20 },
-  { name: 'Twitter(X)', src: 'https://x.com/danwangcc', icon: '/images/icon/twitter.png', url: '#', bgColor: 'bg-blue-400', angle: 140 }
+  { name: 'Bilibili', src: 'https://space.bilibili.com/417911503?s', icon: '/images/icon/bilibili.png', bgColor: 'bg-pink-400', baseAngle: 0 },
+  { name: 'GitHub', src: 'https://github.com/danwang1239568', icon: '/images/icon/github.png', bgColor: 'bg-gray-800', baseAngle: 120 },
+  { name: 'Twitter(X)', src: 'https://x.com/danwangcc', icon: '/images/icon/twitter.png', bgColor: 'bg-blue-400', baseAngle: 240 }
 ]
 
 const btnRefs = ref<HTMLElement[]>([])
+const orbitParams = ref({ angle: 0, radius: 0 }) // 初始半径为0，确保从中心弹出
 
-const animateButtons = () => {
-  const radius = 150; // Final resting radius
-  const overshootFactor = 1.15;
-  const overshootRadius = radius * overshootFactor; 
-
-  const popOutDuration = 1.0; // Duration for pop out to overshoot
-  const snapBackDuration = 0.4; // Duration for snap back to final
-  const pauseDuration = 0.2;    // Pause after overshoot
-
-  if (btnRefs.value.length === 0) {
-    console.error("btnRefs is empty. Buttons might not be rendered or referenced correctly.");
-    return;
-  }
-
+const updateOrbit = () => {
+  const isMobile = window.innerWidth < 768
+  const currentRadius = orbitParams.value.radius * (isMobile ? 0.7 : 1)
+  
   btnRefs.value.forEach((btn, index) => {
-    const angleDeg = socialLinks[index].angle;
-    // Manual conversion from degrees to radians
-    const initialRad = (angleDeg * Math.PI) / 180; 
+    if (!btn) return
+    const aa = orbitParams.value.angle + socialLinks[index].baseAngle
+    // 严格抵消旋转：rotate(公转) -> translateX(半径) -> rotate(反向自转)
+    btn.style.transform = `rotate(${aa}deg) translateX(${currentRadius}px) rotate(${-aa}deg)`
+  })
+}
 
-    const targetX = Math.cos(initialRad) * radius;
-    const targetY = Math.sin(initialRad) * radius;
-    const overshootX = Math.cos(initialRad) * overshootRadius;
-    const overshootY = Math.sin(initialRad) * overshootRadius;
+const handleHeadClick = () => {
+  // 停止当前正在进行的轨道动画，防止叠加加速
+  gsap.killTweensOf(orbitParams.value)
 
-    const buttonAnimation = gsap.timeline({
-      delay: index * 0.1, // Stagger each button's animation
-      defaults: { ease: "power2.out" }, // Consistent ease for pop-out and snap-back
-    });
-
-    // Tween 1: Pop out to overshoot
-    buttonAnimation.fromTo(btn,
-      { // Initial state: center, invisible, scaled down, horizontal
-        x: 0, y: 0, opacity: 0, scale: 0, rotation: 0,
-      },
-      { // Target state: overshoot position, scale up, visible
-        x: overshootX,
-        y: overshootY,
-        scale: 1.3,
-        opacity: 1,
-        rotation: 0,
-        duration: popOutDuration, 
-      }
-    );
-
-    // Tween 2: Snap back to final position (radius 180px)
-    buttonAnimation.to(btn,
-      {
-        x: targetX,
-        y: targetY,
-        scale: 1, // Back to normal scale
-        duration: snapBackDuration,
-      },
-      `+=${pauseDuration}` // Re-introduce the 0.2s pause
-    );
-  });
-};
+  const randomDirection = Math.random() > 0.5 ? 1 : -1
+  const randomOffset = (360 + Math.random() * 360) * randomDirection
+  
+  const tl = gsap.timeline({ onUpdate: updateOrbit })
+  
+  // 1. 爆发阶段：旋转并稍微扩开半径
+  tl.to(orbitParams.value, {
+    angle: orbitParams.value.angle + randomOffset,
+    radius: 260,
+    duration: 2,
+    ease: "power2.out" // 更温和的减速
+  })
+  
+  // 2. 悄悄缩回原位
+  tl.to(orbitParams.value, {
+    radius: 200,
+    duration: 1,
+    ease: "sine.inOut"
+  }, "-=1")
+}
 
 onMounted(() => {
-  animateButtons()
-});
+  // 确保初始位置在中心
+  updateOrbit()
+
+  const tl = gsap.timeline({ onUpdate: updateOrbit })
+
+  // 1. 弹出动画：scale 和 radius 同步从 0 增长
+  tl.to(orbitParams.value, {
+    radius: 200,
+    angle: 360, // 弹出时顺便转一圈
+    duration: 1.5,
+    ease: "power3.out"
+  })
+
+  tl.fromTo(btnRefs.value, 
+    { scale: 0, opacity: 0 },
+    { scale: 1, opacity: 1, duration: 0.5, stagger: 0.1, ease: "back.out(1.5)" },
+    0 // 与 radius 动画同时开始
+  )
+})
+
+onUnmounted(() => {
+  gsap.killTweensOf(orbitParams.value)
+})
 </script>
 
 <template>
   <div class="relative h-screen w-full flex items-center justify-center bg-cover bg-center bg-fixed overflow-hidden" style="background-image: url('/images/pic/pic_1.jpg');">
     
     <!-- 核心容器 -->
-    <div class="relative flex items-center justify-center -translate-y-12 md:scale-130">
+    <div class="relative flex items-center justify-center -translate-y-12 md:scale-110">
       
-      <!-- 社交按钮容器 -->
-      <div class="absolute inset-0 flex items-center justify-center">
+      <!-- 社交气泡按钮 (胶囊型) -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
         <a 
           v-for="(item, index) in socialLinks" 
           :key="item.name"
           :ref="el => { if(el) btnRefs[index] = el as HTMLElement }"
-          :href="item.src" 
-          class="absolute z-20 flex items-center gap-2 px-3 py-1.5 border border-white/30 rounded-full text-white shadow-xl opacity-0 scale-0 group whitespace-nowrap hover:scale-110 active:scale-95 transition-[box-shadow,filter,transform] duration-300"
+          :href="item.src"
+          target="_blank"
+          class="cycle_a absolute z-20 flex items-center gap-2 px-4 py-2 text-white shadow-xl transition-[box-shadow,filter] duration-300 hover:scale-110 active:scale-95 rounded-full whitespace-nowrap border border-white/20 pointer-events-auto"
           :class="item.bgColor"
         >
           <img :src="item.icon" :alt="item.name" class="w-5 h-5 object-contain brightness-110">
-          <span class="font-medium tracking-wide text-sm leading-none">{{ item.name }}</span>
+          <span class="font-bold tracking-wider text-xs md:text-sm uppercase">{{ item.name }}</span>
         </a>
       </div>
 
       <!-- 彩带动画 -->
-      <div class="absolute w-[262px] h-[262px] rounded-full border-[3px] border-transparent border-t-emerald-400 animate-spin-fast-outer"></div>
-      <div class="absolute w-[236px] h-[236px] rounded-full border-[3px] border-transparent border-t-amber-400 animate-spin-reverse-fast-medium"></div>
-      <div class="absolute w-[210px] h-[210px] rounded-full border-[3px] border-transparent border-t-cyan-400 animate-spin-ultra-fast"></div>
+      <div class="absolute w-[262px] h-[262px] rounded-full border-[3px] border-transparent border-t-emerald-400/20 animate-spin-fast-outer"></div>
+      <div class="absolute w-[236px] h-[236px] rounded-full border-[3px] border-transparent border-t-amber-400/30 animate-spin-reverse-fast-medium"></div>
+      <div class="absolute w-[210px] h-[210px] rounded-full border-[3px] border-transparent border-t-cyan-400/20 animate-spin-ultra-fast"></div>
 
       <!-- 中心大头像 -->
-      <div class="relative w-36 h-36 rounded-full border-4 border-white/20 shadow-2xl overflow-hidden z-30 bg-black/20 backdrop-blur-sm cursor-pointer">
-        <img src="/images/pic/avatar.png" alt="Avatar" class="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-500">
+      <div 
+        @click="handleHeadClick"
+        class="relative w-36 h-36 rounded-full border-4 border-white/20 shadow-2xl overflow-hidden z-30 bg-black/20 backdrop-blur-sm cursor-pointer group active:scale-90 transition-transform duration-200"
+      >
+        <img src="/images/pic/avatar.png" alt="Avatar" class="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500">
       </div>
     </div>
 
-    <!-- 文字内容 -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 md:px-8 text-white">
-      <div class="bg-black/20 p-4 md:p-6 rounded-3xl text-center shadow-2xl border border-white/10 z-10">
-        <h3 class="text-xl md:text-2xl font-bold">_Smileシ淡莣c</h3>
-        <p class="text-xs md:text-sm font-light tracking-widest uppercase mt-1">浮生一薤露，蜗角争是非</p><br>
-        <p class="text-sm md:text-base leading-relaxed">为世界献上美好祝福 <br> 愿世界祝福我</p>
+    <!-- 底部文字 -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 md:px-8 text-white select-none pointer-events-none opacity-90">
+      <div class="bg-black/20 p-4 md:p-6 rounded-3xl text-center shadow-2xl border border-white/10 backdrop-blur-sm">
+        <h3 class="text-xl md:text-2xl font-bold tracking-tight text-amber-50">_Smileシ淡莣c</h3>
+        <p class="text-xs md:text-sm font-light tracking-[0.2em] uppercase mt-1 opacity-70">浮生一薤露，蜗角争是非</p>
+        <div class="h-px w-12 bg-white/10 mx-auto my-3"></div>
+        <p class="text-sm md:text-base leading-relaxed font-light">
+          为世界献上美好祝福 <br> 愿世界祝福我
+        </p>
       </div>
     </div>
 
@@ -119,9 +128,9 @@ onMounted(() => {
 <style scoped>
 @reference "tailwindcss";
 
-.animate-spin-ultra-fast { animation: spin 1.5s linear infinite; }
-.animate-spin-reverse-fast-medium { animation: spin-reverse 2.5s linear infinite; }
-.animate-spin-fast-outer { animation: spin 4s linear infinite; }
+.animate-spin-ultra-fast { animation: spin 5s linear infinite; }
+.animate-spin-reverse-fast-medium { animation: spin-reverse 7s linear infinite; }
+.animate-spin-fast-outer { animation: spin 10s linear infinite; }
 
 @keyframes spin {
   from { transform: rotate(0deg); }

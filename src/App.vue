@@ -81,4 +81,9 @@ const options = ref({
   background-position: center;
   background-attachment: fixed; /* 核心：使背景固定 */
 }
+
+/* 隐藏 fullpage.js 水印 */
+.fp-watermark {
+  display: none !important;
+}
 </style>

@@ -3,7 +3,7 @@
     
     <!-- 顶部标题 -->
     <div class="text-center">
-      <h2 class="text-sm md:text-xl mb-2 md:mb-4 text-white tracking-widest opacity-90">
+      <h2 class="text-sm md:text-xl text-white tracking-widest opacity-90">
         Something Of Hobby
       </h2>
     </div>
@@ -14,7 +14,7 @@
         <div 
           v-for="(item, index) in hobbies" 
           :key="index"
-          class="sticker-card aspect-square rounded-none flex flex-col items-center justify-center bg-opacity-95 transition-all duration-300 shadow-[5px_5px_15px_rgba(0,0,0,0.4)] hover:shadow-[20px_20px_40px_rgba(0,0,0,0.6)] cursor-pointer group relative p-4"
+          class="sticker-card aspect-square rounded-none flex flex-col items-center justify-center bg-opacity-95 transition-all duration-300 shadow-[5px_5px_15px_rgba(0,0,0,0.4)] hover:shadow-[20px_20px_40px_rgba(0,0,0,0.6)] cursor-pointer group relative p-0.5"
           :style="{ 
             backgroundColor: item.color, 
             '--initial-rotate': `${item.rotate}deg`,
@@ -22,13 +22,13 @@
           }"
         >
           <!-- 文字内容 (置于上方) -->
-          <span v-if="item.name" class="text-white text-xs md:text-sm font-bold tracking-wider drop-shadow-md text-center px-2 whitespace-pre-line leading-relaxed mb-3">
+          <span v-if="item.name" class="text-white text-xs md:text-sm font-bold tracking-wider drop-shadow-md text-center px-1 whitespace-pre-line leading-relaxed mb-3">
             {{ item.name }}
           </span>
 
           <!-- 图片显示 (置于下方) -->
           <div v-if="item.image" class="w-full flex-1 flex items-center justify-center overflow-hidden">
-            <img :src="item.image" :alt="item.name" class="max-h-full max-w-full object-contain drop-shadow-md transition-transform group-hover:scale-105" />
+            <img :src="item.image" :alt="item.name" class="max-h-full max-w-full object-contain drop-shadow-md transition-transform" />
           </div>
         </div>
       </div>
