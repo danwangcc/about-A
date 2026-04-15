@@ -5,7 +5,7 @@ import { gsap } from 'gsap'
 const socialLinks = [
   { name: 'Bilibili', src: 'https://space.bilibili.com/417911503?s', icon: '/images/icon/bilibili.png', bgColor: 'bg-pink-400', baseAngle: 0 },
   { name: 'GitHub', src: 'https://github.com/danwang1239568', icon: '/images/icon/github.png', bgColor: 'bg-gray-800', baseAngle: 120 },
-  { name: 'Twitter(X)', src: 'https://x.com/danwangcc', icon: '/images/icon/twitter.png', bgColor: 'bg-blue-400', baseAngle: 240 }
+  { name: 'X (Twitter)', src: 'https://x.com/danwangcc', icon: '/images/icon/x.png', bgColor: 'bg-blue-400', baseAngle: 240 }
 ]
 
 const btnRefs = ref<HTMLElement[]>([])
@@ -13,8 +13,8 @@ const orbitParams = ref({ angle: 0, radius: 0 }) // 初始半径为0，确保从
 
 const updateOrbit = () => {
   const isMobile = window.innerWidth < 768
-  const currentRadius = orbitParams.value.radius * (isMobile ? 0.7 : 1)
-  
+  const currentRadius = orbitParams.value.radius * (isMobile ? 0.75 : 1)
+
   btnRefs.value.forEach((btn, index) => {
     if (!btn) return
     const aa = orbitParams.value.angle + socialLinks[index].baseAngle
@@ -29,23 +29,23 @@ const handleHeadClick = () => {
 
   const randomDirection = Math.random() > 0.5 ? 1 : -1
   const randomOffset = (360 + Math.random() * 360) * randomDirection
-  
+
   const tl = gsap.timeline({ onUpdate: updateOrbit })
-  
-  // 1. 爆发阶段：旋转并稍微扩开半径
+
+  // 1. 爆发阶段：旋转并明显扩开半径 (从 160 扩到 280)
   tl.to(orbitParams.value, {
     angle: orbitParams.value.angle + randomOffset,
-    radius: 260,
+    radius: 280,
     duration: 2,
-    ease: "power2.out" // 更温和的减速
+    ease: "power2.out" 
   })
-  
-  // 2. 悄悄缩回原位
+
+  // 2. 悄悄缩回原位 (160)
   tl.to(orbitParams.value, {
-    radius: 200,
-    duration: 1,
+    radius: 160,
+    duration: 1.2,
     ease: "sine.inOut"
-  }, "-=1")
+  }, "-=1.2")
 }
 
 onMounted(() => {
@@ -54,9 +54,9 @@ onMounted(() => {
 
   const tl = gsap.timeline({ onUpdate: updateOrbit })
 
-  // 1. 弹出动画：scale 和 radius 同步从 0 增长
+  // 1. 弹出动画：scale 和 radius 同步从 0 增长到 160
   tl.to(orbitParams.value, {
-    radius: 200,
+    radius: 160,
     angle: 360, // 弹出时顺便转一圈
     duration: 1.5,
     ease: "power3.out"
@@ -81,25 +81,24 @@ onUnmounted(() => {
     <div class="relative flex items-center justify-center -translate-y-12 md:scale-110">
       
       <!-- 社交气泡按钮 (胶囊型) -->
-      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="absolute inset-0 flex items-center justify-center">
         <a 
           v-for="(item, index) in socialLinks" 
           :key="item.name"
           :ref="el => { if(el) btnRefs[index] = el as HTMLElement }"
           :href="item.src"
-          target="_blank"
-          class="cycle_a absolute z-20 flex items-center gap-2 px-4 py-2 text-white shadow-xl transition-[box-shadow,filter] duration-300 hover:scale-110 active:scale-95 rounded-full whitespace-nowrap border border-white/20 pointer-events-auto"
+          class="cycle_a absolute z-50 flex items-center gap-2 px-4 py-2 text-white shadow-xl transition-[box-shadow,filter] duration-300 hover:scale-110 active:scale-95 rounded-full whitespace-nowrap border border-white/20"
           :class="item.bgColor"
         >
           <img :src="item.icon" :alt="item.name" class="w-5 h-5 object-contain brightness-110">
-          <span class="font-bold tracking-wider text-xs md:text-sm uppercase">{{ item.name }}</span>
+          <span class="font-bold tracking-wider text-xs md:text-sm">{{ item.name }}</span>
         </a>
       </div>
 
-      <!-- 彩带动画 -->
-      <div class="absolute w-[262px] h-[262px] rounded-full border-[3px] border-transparent border-t-emerald-400/20 animate-spin-fast-outer"></div>
-      <div class="absolute w-[236px] h-[236px] rounded-full border-[3px] border-transparent border-t-amber-400/30 animate-spin-reverse-fast-medium"></div>
-      <div class="absolute w-[210px] h-[210px] rounded-full border-[3px] border-transparent border-t-cyan-400/20 animate-spin-ultra-fast"></div>
+      <!-- 彩带动画 (超强视觉效果) -->
+      <div class="absolute w-[262px] h-[262px] rounded-full border-[5px] border-transparent border-t-emerald-300 animate-spin-fast-outer drop-shadow-[0_0_12px_rgba(110,231,183,0.8)]"></div>
+      <div class="absolute w-[236px] h-[236px] rounded-full border-[5px] border-transparent border-t-yellow-300 animate-spin-reverse-fast-medium drop-shadow-[0_0_12px_rgba(253,224,71,0.8)]"></div>
+      <div class="absolute w-[210px] h-[210px] rounded-full border-[5px] border-transparent border-t-cyan-300 animate-spin-ultra-fast drop-shadow-[0_0_12px_rgba(103,232,249,0.8)]"></div>
 
       <!-- 中心大头像 -->
       <div 
@@ -128,9 +127,9 @@ onUnmounted(() => {
 <style scoped>
 @reference "tailwindcss";
 
-.animate-spin-ultra-fast { animation: spin 5s linear infinite; }
-.animate-spin-reverse-fast-medium { animation: spin-reverse 7s linear infinite; }
-.animate-spin-fast-outer { animation: spin 10s linear infinite; }
+.animate-spin-ultra-fast { animation: spin 2.5s linear infinite; }
+.animate-spin-reverse-fast-medium { animation: spin-reverse 3.5s linear infinite; }
+.animate-spin-fast-outer { animation: spin 5s linear infinite; }
 
 @keyframes spin {
   from { transform: rotate(0deg); }

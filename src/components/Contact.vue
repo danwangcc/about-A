@@ -13,7 +13,7 @@ const activeMessages = ref<Record<number, string>>({})
 
 const handleClick = (index: number, item: any) => {
   if (item.action === 'link') {
-    window.open(item.link, '_blank')
+    window.open(item.link, '_self')
     return
   }
 
@@ -94,7 +94,7 @@ onUnmounted(() => {
       <div class="text-center space-y-4 opacity-40 select-none cursor-default">
         <div class="text-xs md:text-sm tracking-[0.1em]">
           <p>© 2026 _Smileシ淡莣c</p>
-          <p>Design Inspired by <a href="https://github.com/MoeWhite19" target="_blank" class="border-b border-white/40 hover:border-white transition-colors">MoeWhite19</a></p>
+          <p>Design Inspired by <a href="https://github.com/MoeWhite19" class="border-b border-white/40 hover:border-white transition-colors">MoeWhite19</a></p>
           <p>_Smileシ淡莣c の主页已存活{{ uptime }}</p>
         </div>
       </div>
