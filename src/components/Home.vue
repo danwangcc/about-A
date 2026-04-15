@@ -3,9 +3,9 @@ import { onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 
 const socialLinks = [
-  { name: 'Bilibili', icon: '/images/icon/bilibili.png', url: '#', bgColor: 'bg-pink-400', angle: -90 },
-  { name: 'GitHub', icon: '/images/icon/github.png', url: '#', bgColor: 'bg-gray-800', angle: 30 },
-  { name: 'Twitter', icon: '/images/icon/twitter.png', url: '#', bgColor: 'bg-blue-400', angle: 150 }
+  { name: 'Bilibili', src: 'https://space.bilibili.com/417911503?s', icon: '/images/icon/bilibili.png', url: '#', bgColor: 'bg-pink-400', angle: -110 },
+  { name: 'GitHub', src: 'https://github.com/danwang1239568', icon: '/images/icon/github.png', url: '#', bgColor: 'bg-gray-800', angle: 20 },
+  { name: 'Twitter(X)', src: 'https://x.com/danwangcc', icon: '/images/icon/twitter.png', url: '#', bgColor: 'bg-blue-400', angle: 140 }
 ]
 
 const btnRefs = ref<HTMLElement[]>([])
@@ -84,7 +84,7 @@ onMounted(() => {
           v-for="(item, index) in socialLinks" 
           :key="item.name"
           :ref="el => { if(el) btnRefs[index] = el as HTMLElement }"
-          href="#" 
+          :href="item.src" 
           class="absolute z-20 flex items-center gap-2 px-3 py-1.5 border border-white/30 rounded-full text-white shadow-xl opacity-0 scale-0 group whitespace-nowrap hover:scale-110 active:scale-95 transition-[box-shadow,filter,transform] duration-300"
           :class="item.bgColor"
         >

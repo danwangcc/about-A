@@ -14,61 +14,64 @@
         <div 
           v-for="(item, index) in hobbies" 
           :key="index"
-          class="sticker-card aspect-square rounded-none flex flex-col items-center justify-center bg-opacity-95 transition-all duration-300 shadow-[5px_5px_15px_rgba(0,0,0,0.4)] hover:shadow-[20px_20px_40px_rgba(0,0,0,0.6)] cursor-pointer group relative"
+          class="sticker-card aspect-square rounded-none flex flex-col items-center justify-center bg-opacity-95 transition-all duration-300 shadow-[5px_5px_15px_rgba(0,0,0,0.4)] hover:shadow-[20px_20px_40px_rgba(0,0,0,0.6)] cursor-pointer group relative p-4"
           :style="{ 
             backgroundColor: item.color, 
             '--initial-rotate': `${item.rotate}deg`,
             '--y-offset': `${item.yOffset}px`
           }"
         >
-          <!-- 图片显示 (如果有) -->
-          <div v-if="item.image" class="w-full px-2 flex items-center justify-center overflow-hidden">
-            <img :src="item.image" :alt="item.name" class="w-full h-full object-contain drop-shadow-md transition-transform group-hover:scale-105" />
-          </div>
-
-          <!-- 文字内容 -->
-          <span v-if="item.name" class="text-xs md:text-xl font-bold tracking-wider drop-shadow-md uppercase text-center px-2 whitespace-pre-line leading-relaxed">
+          <!-- 文字内容 (置于上方) -->
+          <span v-if="item.name" class="text-white text-xs md:text-sm font-bold tracking-wider drop-shadow-md text-center px-2 whitespace-pre-line leading-relaxed mb-3">
             {{ item.name }}
           </span>
+
+          <!-- 图片显示 (置于下方) -->
+          <div v-if="item.image" class="w-full flex-1 flex items-center justify-center overflow-hidden">
+            <img :src="item.image" :alt="item.name" class="max-h-full max-w-full object-contain drop-shadow-md transition-transform group-hover:scale-105" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</template>
+    </div>
+    </template>
 
     <script setup lang="ts">
     const hobbies = [
     { 
-    name: '世界好大啊\n原来外面的世界是这个这样子啊', 
-    color: '#D45E54', 
-    rotate: -5, 
-    yOffset: 7 
+      name: '葉月ゆら的歌真的很好听', 
+      image: '/images/pic/Hatsukiyura.jpg',
+      color: '#D45E54', 
+      rotate: -5, 
+      yOffset: 4 
     },
     { 
-    name: '我无所谓喜不喜欢，既然Sakura不喜欢，那就杀掉好了。', 
-    color: '#AD71B2', 
-    rotate: 6, 
-    yOffset: -5 
+      name: '笑一笑吧，濑津美', 
+      image: '/images/pic/Narcissus.png',
+      color: '#AD71B2', 
+      rotate: 6, 
+      yOffset: -3 
     },
     { 
-    name: '我们都是小怪兽\n有一天会被正义的奥特曼杀死。', 
-    color: '#C5BFB4', 
-    rotate: -4, 
-    yOffset: 10 
+      name: '越共探头', 
+      image: '/images/pic/Touhou.jpg',
+      color: '#C5BFB4', 
+      rotate: -4, 
+      yOffset: 5 
     },
     { 
-    name: 'Sakura&Eriiの小黄鸭', 
-    image: '/images/pic/Erii.png',
-    color: '#7A9E9F', 
-    rotate: 8, 
-    yOffset: -2 
+      name: 'Minecraft', 
+      image: '/images/pic/MC.png',
+      color: '#7A9E9F', 
+      rotate: 8, 
+      yOffset: -2 
     },
     { 
-    name: '', 
-    image: '/images/pic/bad_apple.svg',
-    color: '#2f3640', 
-    rotate: -7, 
-    yOffset: 6 
+      name: '游戏的最高配置就是——', 
+      image: '/images/pic/Roco.png',
+      color: '#8E9775', 
+      rotate: -7, 
+      yOffset: 3 
     }
     ]
     </script>

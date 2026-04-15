@@ -68,24 +68,24 @@ const scrollContainer = ref<HTMLElement | null>(null)
 
 const experiences = [
   { 
-    title: '04.24', 
-    description: '和Sakura去东京天空树，\n世界上最暖和的地方，\n在天空树的顶上。' 
+    title: '2018.09', 
+    description: '初中微机课，第一次接触编程，当时非常喜欢。' 
   },
   { 
-    title: '04.26', 
-    description: '和Sakura去明治神宫，\n有人在那里举办婚礼。' 
+    title: '2023.10', 
+    description: '进了计算机专业，开始正儿八经学习编程。' 
   },
   { 
-    title: '04.25', 
-    description: '和Sakura去迪士尼，\n鬼屋很可怕，\n但是有Sakura在，\n所以不可怕。' 
+    title: '2024.01', 
+    description: '开始折腾前端开发。' 
   },
   { 
-    title: 'E.N.D', 
-    description: 'Sakura\n最好了\nBGM: 最后的旅行' 
+    title: '2025.07', 
+    description: '学习 Python。' 
   },
   { 
-    title: '', 
-    description: '世界很温柔.....\n我很喜欢这样的世界\n但他不喜欢我' 
+    title: '2026.04', 
+    description: 'AI太好用了你知道吗? 虽然 Iflow-cli 刚关服，但 Gemini-cli 的免费额度还算够用。' 
   }
 ]
 

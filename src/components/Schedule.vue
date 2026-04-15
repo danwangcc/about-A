@@ -36,14 +36,14 @@
 
       <!-- 右侧部分：诗意文字 (移动端占据剩余空间) -->
       <div class="flex-auto md:flex-1 w-full flex flex-col items-center justify-center overflow-hidden">
-        <div class="text-center text-amber-50/90 max-w-sm md:max-w-lg w-full px-6 py-4 md:px-8 md:py-12 overflow-hidden bg-black/20 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl">
-          <h2 class="text-lg md:text-3xl font-light mb-0.5">神眷之櫻花</h2>
+        <div class="text-center text-amber-50/90 max-w-sm md:max-w-lg w-full px-6 py-6 md:px-8 md:py-12 overflow-hidden bg-black/20 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl">
+          <h2 class="text-xl md:text-3xl font-light mb-1 uppercase tracking-widest">神眷之櫻花</h2>
 
           <!-- 分割线 (80% 宽度，极小上下间距) -->
-          <div class="w-[80%] h-px bg-amber-50/20 mx-auto mb-1"></div>
+          <div class="w-[80%] h-px bg-amber-50/20 mx-auto mb-4 md:mb-6"></div>
 
           <!-- 诗句内容 (移动端 12px) -->
-          <div class="poetic-lines space-y-0 text-xs md:text-lg font-light tracking-[0.15em] leading-relaxed">
+          <div class="poetic-lines space-y-2 text-xs md:text-lg font-light tracking-[0.15em] leading-relaxed">
             <p>我总是忍不住回想起那座城市的夜晚</p>
             <p>灯火燃成的篝火</p>
             <p>我坐在天台上时光短促又漫长</p>
@@ -71,11 +71,11 @@ interface Tech {
 }
 
 const techStack: Tech[] = [
-  { name: 'Vue / Vite', level: 90, color: '#42b883' },
-  { name: 'TypeScript', level: 85, color: '#3178c6' },
-  { name: 'Tailwind CSS', level: 95, color: '#38bdf8' },
-  { name: 'Node.js / Express', level: 75, color: '#83cd29' },
-  { name: 'GSAP / Animation', level: 80, color: '#88ce02' }
+  { name: 'Vue', level: 80, color: '#42b883' },
+  { name: 'React', level: 50, color: '#88ce02' },
+  { name: 'TypeScript', level: 60, color: '#3178c6' },
+  { name: 'Tailwind CSS', level: 70, color: '#38bdf8' },
+  { name: 'Node.js / Express', level: 50, color: '#83cd29' },
 ]
 
 const barRefs = ref<HTMLElement[]>([])

@@ -2,21 +2,47 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const contactItems = [
-  { value: '歌单', color: '#D45E54' },
-  { value: '企鹅', color: '#6D8299' },
-  { value: '私云', color: '#AD71B2' },
-  { value: '邮箱', color: '#8E9775' }
+  { value: '歌单', hoverValue: '我的歌单', color: '#D45E54', link: 'https://music.163.com/#/user/home?id=13625313867', action: 'link' },
+  { value: '企鹅', hoverValue: '1318704976', color: '#6D8299', action: 'copy' },
+  { value: '私云', hoverValue: '暂无', color: '#AD71B2', action: 'none' },
+  { value: '邮箱', hoverValue: '1318704976@qq.com', color: '#8E9775', action: 'copy' }
 ]
+
+const hoveredIndex = ref<number | null>(null)
+const activeMessages = ref<Record<number, string>>({})
+
+const handleClick = (index: number, item: any) => {
+  if (item.action === 'link') {
+    window.open(item.link, '_blank')
+    return
+  }
+
+  let msg = ''
+  if (item.action === 'copy') {
+    navigator.clipboard.writeText(item.hoverValue).then(() => {
+      msg = '已复制'
+      showStatus(index, msg)
+    })
+  } else if (item.action === 'none') {
+    msg = '暂无内容'
+    showStatus(index, msg)
+  }
+}
+
+const showStatus = (index: number, msg: string) => {
+  activeMessages.value[index] = msg
+  setTimeout(() => {
+    delete activeMessages.value[index]
+  }, 2000)
+}
 
 // 存活时间逻辑
 const uptime = ref('')
 let timer: number | null = null
 
-const startDate = new Date() // 设置建站起始日期为今天 (当前时刻)
-
 const updateTimer = () => {
   const now = new Date()
-  const diff = now.getTime() - startDate.getTime()
+  const diff = now.getTime() - 1776228345490
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24))
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24)
@@ -52,10 +78,15 @@ onUnmounted(() => {
         <div 
           v-for="(item, index) in contactItems" 
           :key="index"
-          class="text-white text-center p-2 border border-white/5 cursor-pointer transition-all hover:outline hover:outline-[5px] hover:outline-gray-400 z-10 select-none"
+          @click="handleClick(index, item)"
+          @mouseenter="hoveredIndex = index"
+          @mouseleave="hoveredIndex = null"
+          class="text-white text-center p-2 border border-white/5 cursor-pointer transition-all hover:outline hover:outline-[5px] hover:outline-gray-400 z-10 select-none flex items-center justify-center min-h-[44px]"
           :style="{ backgroundColor: item.color }"
         >
-          <span class="text-sm md:text-base font-bold tracking-widest truncate w-full text-center">{{ item.value }}</span>
+          <span class="text-sm md:text-base font-bold tracking-widest truncate w-full text-center">
+            {{ activeMessages[index] || (hoveredIndex === index ? item.hoverValue : item.value) }}
+          </span>
         </div>
       </div>
 
@@ -63,7 +94,7 @@ onUnmounted(() => {
       <div class="text-center space-y-4 opacity-40 select-none cursor-default">
         <div class="text-xs md:text-sm tracking-[0.1em]">
           <p>© 2026 _Smileシ淡莣c</p>
-          <p>Design Inspired by <a href="https://github.com/MoeWhite19" target="_blank" class="border-b">MoeWhite19</a></p>
+          <p>Design Inspired by <a href="https://github.com/MoeWhite19" target="_blank" class="border-b border-white/40 hover:border-white transition-colors">MoeWhite19</a></p>
           <p>_Smileシ淡莣c の主页已存活{{ uptime }}</p>
         </div>
       </div>
