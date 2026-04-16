@@ -1,23 +1,23 @@
 <template>
-  <div class="relative h-screen w-full bg-cover bg-center bg-fixed overflow-hidden" style="background-image: url('/images/pic/bg3.png');">
+  <div class="relative h-screen w-full bg-cover bg-center bg-fixed overflow-hidden" style="background-image: url('/images/pic/bg3.webp');">
     
     <!-- 标题 (可选，增强层次感) -->
     <h2 class="absolute top-20 left-12 text-white/20 text-8xl font-black uppercase pointer-events-none select-none">
       Experience
     </h2>
 
-    <!-- 左右导航箭头 (去掉背景，常态 100% 不透明度) -->
+    <!-- 左右导航箭头 (去掉背景，常驻 100% 不透明度) -->
     <button 
       @click="scroll(-1)"
       class="hidden md:block absolute left-6 top-1/2 -translate-y-1/2 z-50 p-2 transition-all active:scale-75"
     >
-      <img src="/images/icon/arrowleft.png" class="w-8 h-8 md:w-12 md:h-12 object-contain" alt="Prev">
+      <img src="/images/icon/arrowleft.webp" class="w-8 h-8 md:w-12 md:h-12 object-contain" alt="Prev">
     </button>
     <button 
       @click="scroll(1)"
       class="hidden md:block absolute right-6 top-1/2 -translate-y-1/2 z-50 p-2 transition-all active:scale-75"
     >
-      <img src="/images/icon/arrowright.png" class="w-8 h-8 md:w-12 md:h-12 object-contain" alt="Next">
+      <img src="/images/icon/arrowright.webp" class="w-8 h-8 md:w-12 md:h-12 object-contain" alt="Next">
     </button>
 
     <!-- 水平时间轴线 (4px 点线) -->
@@ -36,7 +36,7 @@
         <!-- 中心圆点 -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)] z-20"></div>
 
-        <!-- 经历卡片 (上下交替，不透明度增加) -->
+        <!-- 经历卡片 (上下交替，不透明度增强) -->
         <div 
           :class="[
             'absolute left-1/2 -translate-x-1/2 h-[35vh] w-[70vw] md:w-[450px] p-6 bg-gray-600/85 rounded-2xl border border-white/5 shadow-[8px_8px_20px_rgba(0,0,0,0.5)] transition-all',

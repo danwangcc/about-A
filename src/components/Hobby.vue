@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-full px-[3vw] sm:px-[20vw] md:px-12 flex flex-col items-center pt-12 md:pt-18 bg-cover bg-center bg-fixed" style="background-image: url('/images/pic/bg4.jpg');">
+  <div class="h-screen w-full px-[3vw] sm:px-[20vw] md:px-12 flex flex-col items-center pt-12 md:pt-18 bg-cover bg-center bg-fixed" style="background-image: url('/images/pic/bg4.webp');">
     
     <!-- 顶部标题 -->
     <div class="text-center">
@@ -40,35 +40,35 @@
     const hobbies = [
     { 
       name: '葉月ゆら的歌真的很好听', 
-      image: '/images/pic/Hatsukiyura.jpg',
+      image: '/images/pic/Hatsukiyura.webp',
       color: '#D45E54', 
       rotate: -5, 
       yOffset: 4 
     },
     { 
       name: '笑一笑吧，濑津美', 
-      image: '/images/pic/Narcissus.png',
+      image: '/images/pic/Narcissus.webp',
       color: '#AD71B2', 
       rotate: 6, 
       yOffset: -3 
     },
     { 
       name: '越共探头', 
-      image: '/images/pic/Touhou.jpg',
+      image: '/images/pic/Touhou.webp',
       color: '#C5BFB4', 
       rotate: -4, 
       yOffset: 5 
     },
     { 
       name: 'Minecraft', 
-      image: '/images/pic/MC.png',
+      image: '/images/pic/MC.webp',
       color: '#7A9E9F', 
       rotate: 8, 
       yOffset: -2 
     },
     { 
       name: '游戏的最高配置就是——', 
-      image: '/images/pic/Roco.png',
+      image: '/images/pic/Roco.webp',
       color: '#8E9775', 
       rotate: -7, 
       yOffset: 3 

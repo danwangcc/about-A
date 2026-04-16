@@ -3,9 +3,9 @@ import { onMounted, ref, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 
 const socialLinks = [
-  { name: 'Bilibili', src: 'https://space.bilibili.com/417911503?s', icon: '/images/icon/bilibili.png', bgColor: 'bg-pink-400', baseAngle: 0 },
-  { name: 'GitHub', src: 'https://github.com/danwangcc', icon: '/images/icon/github.png', bgColor: 'bg-gray-800', baseAngle: 120 },
-  { name: 'X (Twitter)', src: 'https://x.com/danwangcc', icon: '/images/icon/x.png', bgColor: 'bg-blue-400', baseAngle: 240 }
+  { name: 'Bilibili', src: 'https://space.bilibili.com/417911503?s', icon: '/images/icon/bilibili.webp', bgColor: 'bg-pink-400', baseAngle: 0 },
+  { name: 'GitHub', src: 'https://github.com/danwangcc', icon: '/images/icon/github.webp', bgColor: 'bg-gray-800', baseAngle: 120 },
+  { name: 'X (Twitter)', src: 'https://x.com/danwangcc', icon: '/images/icon/x.webp', bgColor: 'bg-blue-400', baseAngle: 240 }
 ]
 
 const btnRefs = ref<HTMLElement[]>([])
@@ -75,7 +75,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative h-screen w-full flex items-center justify-center bg-cover bg-left bg-fixed overflow-hidden" style="background-image: url('/images/pic/bg1.png');">
+  <div class="relative h-screen w-full flex items-center justify-center bg-cover bg-left bg-fixed overflow-hidden" style="background-image: url('/images/pic/bg1.webp');">
     
     <!-- 核心容器 -->
     <div class="relative flex items-center justify-center -translate-y-12 md:scale-110">
@@ -105,7 +105,7 @@ onUnmounted(() => {
         @click="handleHeadClick"
         class="relative w-40 h-40 rounded-full border-4 border-white/20 shadow-2xl overflow-hidden z-30 bg-black/20 backdrop-blur-sm cursor-pointer group active:scale-90 transition-transform duration-200"
       >
-        <img src="/images/pic/avatar.png" alt="Avatar" class="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500">
+        <img src="/images/pic/avatar.webp" alt="Avatar" class="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500">
       </div>
     </div>
 

@@ -34,7 +34,7 @@ const options = ref({
     <header class="fixed top-0 left-0 w-full h-10 md:h-14 flex items-center justify-between px-8 bg-white opacity-90 z-100 transition-all shadow-sm">
       <div class="avatar flex items-center gap-3">
         <div class="w-10 h-10 rounded-full bg-black/10 border border-black/20 flex items-center justify-center overflow-hidden">
-          <img src="/images/pic/avatar.png" alt="avatar">
+          <img src="/images/pic/avatar.webp" alt="avatar">
         </div>
         <span class="text-black font-medium text-lg tracking-wider">danwangcc</span>
       </div>

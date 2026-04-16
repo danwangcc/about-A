@@ -49,7 +49,7 @@ const updateTimer = () => {
   const minutes = Math.floor((diff / (1000 * 60)) % 60)
   const seconds = Math.floor((diff / 1000) % 60)
 
-  uptime.value = `${days}天${hours}小时${minutes}分${seconds}秒`
+  uptime.value = `${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`
 }
 
 onMounted(() => {
