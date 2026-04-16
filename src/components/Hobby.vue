@@ -27,8 +27,8 @@
           </span>
 
           <!-- 图片显示 (置于下方) -->
-          <div v-if="item.image" class="w-full flex-1 flex items-center justify-center overflow-hidden">
-            <img :src="item.image" :alt="item.name" class="max-h-full max-w-full object-contain drop-shadow-md transition-transform" />
+          <div v-for="dummy in 1" :key="dummy" class="w-full flex-1 flex items-center justify-center overflow-hidden">
+            <img :data-src="item.image" :alt="item.name" class="max-h-full max-w-full object-contain drop-shadow-md transition-transform" />
           </div>
         </div>
       </div>

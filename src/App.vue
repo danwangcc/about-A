@@ -71,16 +71,27 @@ const options = ref({
 <style>
 @reference "tailwindcss";
 
+/* 预设 section 高度，显著减少 CLS 布局偏移 */
 .section {
   padding: 0 !important;
+  width: 100%;
+  display: block;
+}
+
+.section:not(.fp-auto-height) {
+  min-height: 100vh;
 }
 
 /* 针对 fullpage.js 的固定背景效果优化 */
-.fp-section {
+.fp-section:not(.fp-auto-height) {
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* 核心：使背景固定 */
+  height: 100vh !important;
 }
+
+/* 预填背景色，在图片加载前提供视觉一致性 */
+.section { background-color: #9fdded; }
 
 /* 隐藏 fullpage.js 水印 */
 .fp-watermark {

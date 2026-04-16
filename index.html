@@ -3,26 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>About.淡莣</title>
   <meta name="author" content="_Smileシ淡莣c">
   <meta name="description" content="浮生一薤露，蜗角争是非。">
   <meta name="keywords" content="_Smileシ淡莣c,淡莣,danwang,个人网站,二次元,葉月ゆら,Narcissus,东方project,Minecraft,洛克王国">
   <meta name="application-name" content="_Smileシ淡莣c">
 
+  <!-- 预加载首页关键资源 -->
+  <link rel="preload" as="image" href="/images/pic/bg1.webp">
+  <link rel="preload" as="image" href="/images/pic/avatar.webp">
+
   <meta name="apple-mobile-app-capable" content="yes">
   <meta name="apple-mobile-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="/images/pic/avatar.png">
+  <link rel="apple-touch-icon" href="/images/pic/avatar.webp">
   <meta property="og:title" content="About.淡莣">
   <meta property="og:description" content="浮生一薤露，蜗角争是非。">
-  <meta property="og:image" content="/images/pic/avatar.png">
+  <meta property="og:image" content="/images/pic/avatar.webp">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="About.淡莣">
-  <meta name="twitter:image" content="/images/pic/avatar.png">
+  <meta name="twitter:image" content="/images/pic/avatar.webp">
+
+  <style>
+    .initial-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* 使用纯色背景 #9fdded */
+      background-color: #9fdded;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    /* 样式 243 动画 */
+    .loading-243 {
+      width: 50px;
+      aspect-ratio: 1;
+      /* 使用深蓝色 #2a90ab 作为动画主色 */
+      box-shadow: 0 0 0 3px #2a90ab inset;
+      border-radius: 50%;
+      position: relative;
+      animation: loading-243 7s infinite;
+      margin-bottom: 60px;
+    }
+    .loading-243:before,
+    .loading-243:after {
+      content: "";
+      position: absolute;
+      top: calc(100% + 3px);
+      left: calc(50% - 12.5px);
+      box-shadow: inherit;
+      width: 25px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      transform-origin: 50% -28px;
+      animation: loading-243 1.5s infinite;
+    }
+    .loading-243:after {
+      animation-delay: -0.75s;
+    }
+    @keyframes loading-243 {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loader-text {
+      margin-top: 40px;
+      color: #2a90ab;
+      font-family: system-ui, -apple-system, sans-serif;
+      letter-spacing: 0.6em;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+  </style>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <div class="initial-loader">
+      <div class="loading-243"></div>
+      <div class="loader-text">Loading Data</div>
+    </div>
+  </div>
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
