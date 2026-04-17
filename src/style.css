@@ -8,6 +8,12 @@ html, body {
   overflow: hidden;
 }
 
+/* 禁止所有元素的过度滚动行为 */
+html, body, #fullpage, .fp-container, .fp-section {
+  overscroll-behavior: none;
+  touch-action: none; /* 完全禁止浏览器默认手势，交给 fullpage.js 处理 */
+}
+
 #app {
   height: 100%;
   width: 100%;

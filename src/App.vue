@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import Home from './components/Home.vue'
 import Schedule from './components/Schedule.vue'
 import Experience from './components/Experience.vue'
@@ -28,6 +28,44 @@ const options = ref({
   css3: false, // 必须设为 false，否则背景固定效果会失效
   scrollingSpeed: 600,
 })
+
+// 修复 QQ 浏览器/微信 X5 内核下拉露底问题
+let startY = 0;
+const handleTouchStart = (e: TouchEvent) => {
+  startY = e.touches[0].clientY;
+};
+
+const handleTouchMove = (e: TouchEvent) => {
+  const currentY = e.touches[0].clientY;
+  const deltaY = currentY - startY;
+  
+  // 当页面已经在顶部且尝试向下拉动时，阻止默认行为
+  // fullpage.js 在 autoScrolling 模式下，scrollTop 通常为 0，
+  // 我们通过 fullpage_api 或者简单的 DOM 检查来判断是否在第一屏
+  const isAtTop = window.scrollY <= 0 || document.documentElement.scrollTop <= 0;
+  
+  if (deltaY > 0 && isAtTop) {
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+  }
+};
+
+onMounted(() => {
+  const container = document.getElementById("fullpage");
+  if (container) {
+    container.addEventListener("touchstart", handleTouchStart, { passive: false });
+    container.addEventListener("touchmove", handleTouchMove, { passive: false });
+  }
+});
+
+onUnmounted(() => {
+  const container = document.getElementById("fullpage");
+  if (container) {
+    container.removeEventListener("touchstart", handleTouchStart);
+    container.removeEventListener("touchmove", handleTouchMove);
+  }
+});
 </script>
 
 <template>
@@ -36,7 +74,7 @@ const options = ref({
     <header class="fixed top-0 left-0 w-full h-10 md:h-14 flex items-center justify-between px-8 bg-[#C8F0FFE0] opacity-90 z-100 transition-all shadow-sm">
       <div class="avatar flex items-center gap-3">
         <div class="w-10 h-10 rounded-full bg-black/10 border border-black/20 flex items-center justify-center overflow-hidden">
-          <img src="/images/pic/avatar.webp" alt="avatar">
+          <img src="/images/pic/avatar.webp" alt="avatar" />
         </div>
         <span class="text-black font-medium text-lg tracking-wider">danwangcc</span>
       </div>
@@ -95,7 +133,9 @@ const options = ref({
 }
 
 /* 预填背景色，在图片加载前提供视觉一致性 */
-.section { background-color: #9fdded; }
+.section {
+  background-color: #9fdded;
+}
 
 /* 隐藏 fullpage.js 水印 */
 .fp-watermark {

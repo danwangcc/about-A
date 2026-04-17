@@ -31,5 +31,8 @@ export default defineConfig({
       }
     },
     assetsInlineLimit: 4096,
+  },
+  server: {
+    allowedHosts: ['frp.danwang.xyz']
   }
 })
