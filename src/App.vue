@@ -19,6 +19,7 @@ const navItems = [
 const options = ref({
   licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
   navigation: true,
+  recordHistory: false,
   autoScrolling: true,
   scrollBar: false,
   verticalCentered: false,
