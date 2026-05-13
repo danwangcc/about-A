@@ -1,11 +1,23 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import Home from './components/Home.vue'
 import Schedule from './components/Schedule.vue'
 import Experience from './components/Experience.vue'
 import Hobby from './components/Hobby.vue'
 import Contact from './components/Contact.vue'
 import MusicPlayer from './components/MusicPlayer.vue'
+
+onMounted(async () => {
+  await nextTick()
+  const loadingEl = document.getElementById('initial-loader')
+  console.log(loadingEl)
+  if (loadingEl) {
+    loadingEl.style.opacity = '0'
+    setTimeout(() => {
+      loadingEl?.remove()
+    }, 300);
+  }
+})
 
 // 定义导航菜单数据
 const navItems = [
@@ -26,7 +38,7 @@ const options = ref({
   anchors: navItems.map(item => item.anchor),
   menu: '#menu',
   css3: false, // 必须设为 false，否则背景固定效果会失效
-  scrollingSpeed: 600,
+  scrollingSpeed: 1000
 })
 
 // 修复 QQ 浏览器/微信 X5 内核下拉露底问题

@@ -6,17 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>About.淡莣</title>
   <meta name="author" content="_Smileシ淡莣c">
-  <meta name="description" content="浮生一薤露，蜗角争是非。">
+  <meta name="description" content="_Smileシ淡莣c的个人网站">
   <meta name="keywords" content="_Smileシ淡莣c,淡莣,danwang,个人网站,二次元,葉月ゆら,Narcissus,东方project,Minecraft,洛克王国">
   <meta name="application-name" content="_Smileシ淡莣c">
+  <link rel="canonical" href="https://danwang.xyz">
 
   <!-- 预加载首页关键资源 -->
-  <link rel="preload" as="image" href="/images/pic/bg1.webp">
-  <link rel="preload" as="image" href="/images/pic/avatar.webp">
+  <link rel="preload" as="image" href="/public/images/pic/bg1.webp">
+  <link rel="preload" as="image" href="/public/images/pic/avatar.webp">
 
   <meta name="apple-mobile-app-capable" content="yes">
   <meta name="apple-mobile-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="/images/pic/avatar.webp">
+  <link rel="apple-touch-icon" href="/public/images/pic/avatar.webp">
+  <meta name="apple-mobile-web-app-title" content="About.淡莣">
 
   <!-- QQ/WeChat X5 kernel specific meta tags -->
   <meta name="x5-orientation" content="portrait">
@@ -26,16 +28,23 @@
   <meta name="full-screen" content="yes">
   <meta name="browsermode" content="application">
 
+  <!-- QQ card -->
+  <meta itemprop="name" content="About.淡莣">
+  <meta itemprop="image" content="/public/images/pic/avatar.webp">
+  <meta itemprop="description" content="_Smileシ淡莣c的个人网站">
+
   <meta property="og:title" content="About.淡莣">
-  <meta property="og:description" content="浮生一薤露，蜗角争是非。">
+  <meta property="og:description" content="_Smileシ淡莣c的个人网站">
   <meta property="og:image" content="/images/pic/avatar.webp">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://danwang.xyz">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="About.淡莣">
   <meta name="twitter:image" content="/images/pic/avatar.webp">
+  <meta property="twitter:url" content="https://danwang.xyz">
 
   <style>
-    .initial-loader {
+    #initial-loader {
       position: fixed;
       top: 0;
       left: 0;
@@ -48,6 +57,7 @@
       align-items: center;
       justify-content: center;
       z-index: 9999;
+      transition: opacity .3s;
     }
 
     /* 样式 243 动画 */
@@ -61,6 +71,7 @@
       animation: loading-243 7s infinite;
       margin-bottom: 60px;
     }
+
     .loading-243:before,
     .loading-243:after {
       content: "";
@@ -74,9 +85,11 @@
       transform-origin: 50% -28px;
       animation: loading-243 1.5s infinite;
     }
+
     .loading-243:after {
       animation-delay: -0.75s;
     }
+
     @keyframes loading-243 {
       100% {
         transform: rotate(360deg);
@@ -96,11 +109,10 @@
   </style>
 </head>
 <body>
-  <div id="app">
-    <div class="initial-loader">
-      <div class="loading-243"></div>
-      <div class="loader-text">Loading Data</div>
-    </div>
+  <div id="app"></div>
+  <div id="initial-loader">
+    <div class="loading-243"></div>
+    <div class="loader-text">Loading Data</div>
   </div>
   <script type="module" src="/src/main.ts"></script>
 </body>
