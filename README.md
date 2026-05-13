@@ -1,5 +1,5 @@
 # About.淡莣 | 个人网站
-这是一个基于 **Vue 3**、**TypeScript** 和 **Vite** 构建的个人网站
+这是一个基于 **Vue 3**、**TypeScript** 和 **Vite** 构建的个人网站，[在线预览](https://danwang.xyz)
 
 ### 技术栈
 Vue 3、TypeScript、Vite、Tailwind CSS、vue-fullpage.js、gsap
